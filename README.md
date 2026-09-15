@@ -1,91 +1,93 @@
+*(English version — [Version française](README.fr.md))*
+
 # Lecteur DS HD
 
-Émulateur **Nintendo DS** dans une page web autonome, pensé pour l'iPhone.
-Un seul fichier HTML : moteur, core et interface sont embarqués. Rien n'est envoyé nulle part.
+A **Nintendo DS** emulator in a self-contained web page, built for the iPhone.
+A single HTML file: engine, core and interface are all embedded. Nothing is uploaded anywhere.
 
-**Particularité** : rendu **haute résolution** (jusqu'à ×3), impossible avec la plupart des
-émulateurs DS web, grâce au core DeSmuME et à son upscaling interne.
-
----
-
-## Fonctionnalités
-
-**Émulation**
-- Core **DeSmuME** (libretro), mono-thread — fonctionne sans en-têtes COOP/COEP
-- **Résolution interne** : natif · ×2 (512×384) · ×3 (768×576)
-- **Textures** : natif · ×2 · ×4 (filtre xBRZ)
-- **Rendu** : OpenGL (WebGL2) ou logiciel
-- **Effets 3D** : complets ou allégés (anticrénelage, contours, déposterisation)
-- **Timing** : précis ou rapide (temporisation bus-level)
-- **Frameskip** : 0 à 3
-- Langue de la console : **français**
-- BIOS **optionnels** (HLE par défaut, import d'un `.zip` possible)
-
-**Affichage**
-- Bascule automatique selon l'orientation : côte à côte en paysage, empilé en portrait
-- Boutons **1 / 2** : activer ou désactiver chaque écran, écran unique centré
-- **Stylet** : le toucher de l'écran du bas est transmis au core
-
-**Contrôles**
-- Manette virtuelle : croix avec **diagonales**, boutons, L/R, ligne Select · 1 · 2 · Start
-- **Manette physique** (Gamepad API) : détectée automatiquement, masque les contrôles tactiles
-- **Avance rapide** ×2 / ×4
-- **Zone invisible** au centre : masque toute l'interface, un toucher la rappelle
-
-**Sauvegardes**
-- **Save states** nommés d'après le jeu (IndexedDB), export / import
-- **Import multiple** d'états avec tri automatique (les états d'autres cores sont ignorés)
-- **Sauvegarde automatique** toutes les 30 s et au passage en arrière-plan
-- Bouton **Reprendre** sur l'historique
-- **Sauvegarde cartouche (.sav/.dsv)** : persistée dans IndexedDB, restaurée au lancement
-- Import de `.sav` avec **conversion automatique** (formats DeSmuME `.dsv`, no$gba, tailles non standard)
-
-**Confort**
-- Historique des ROMs (12 entrées)
-- **Wake Lock** : l'écran ne s'éteint plus en jeu
-- Pause automatique en arrière-plan
-- Pause / Redémarrer / Capture d'écran
-- Jauge de stockage
-- Hors ligne via service worker, installable en PWA
+**Highlight**: **high-resolution** rendering (up to ×3), out of reach for most web-based DS
+emulators, thanks to the DeSmuME core and its internal upscaling.
 
 ---
 
-## Utilisation
+## Features
 
-1. Déployer les fichiers sur un hébergeur statique (Cloudflare Pages/Workers, Netlify…)
-2. Ouvrir la page, **charger une ROM `.nds`**
-3. Taper **Play** (iOS exige un geste utilisateur pour démarrer l'audio)
+**Emulation**
+- **DeSmuME** core (libretro), single-threaded — works without COOP/COEP headers
+- **Internal resolution**: native · ×2 (512×384) · ×3 (768×576)
+- **Textures**: native · ×2 · ×4 (xBRZ filter)
+- **Rendering**: OpenGL (WebGL2) or software
+- **3D effects**: full or lightweight (anti-aliasing, edge marking, deposterization)
+- **Timing**: accurate or fast (bus-level timing)
+- **Frameskip**: 0 to 3
+- Console language: **French**
+- **Optional** BIOS (HLE by default, `.zip` import possible)
 
-> Le lecteur fonctionne aussi en ouvrant simplement le fichier HTML en local ;
-> le mode hors ligne et l'installation PWA nécessitent un hébergement.
+**Display**
+- Auto layout by orientation: side-by-side in landscape, stacked in portrait
+- **1 / 2** buttons: enable or disable each screen, single screen centered
+- **Stylus**: touching the bottom screen is passed through to the core
 
-### Réglages conseillés
+**Controls**
+- Virtual gamepad: D-pad with **diagonals**, buttons, L/R, Select · 1 · 2 · Start row
+- **Physical controller** (Gamepad API): auto-detected, hides the touch controls
+- **Fast-forward** ×2 / ×4
+- **Invisible zone** in the center: hides the whole UI, a tap brings it back
 
-| Objectif | Réglages |
+**Saves**
+- **Save states** named after the game (IndexedDB), export / import
+- **Batch import** of states with automatic sorting (states from other cores are ignored)
+- **Auto-save** every 30 s and when the app goes to the background
+- **Resume** button in the history
+- **Cartridge save (.sav/.dsv)**: persisted in IndexedDB, restored on launch
+- `.sav` import with **automatic conversion** (DeSmuME `.dsv`, no$gba, non-standard sizes)
+
+**Comfort**
+- ROM history (12 entries)
+- **Wake Lock**: the screen no longer turns off while playing
+- Automatic pause in the background
+- Pause / Restart / Screenshot
+- Storage gauge
+- Offline via service worker, installable as a PWA
+
+---
+
+## Usage
+
+1. Deploy the files on a static host (Cloudflare Pages/Workers, Netlify…)
+2. Open the page, **load a `.nds` ROM**
+3. Tap **Play** (iOS requires a user gesture to start audio)
+
+> The player also works by simply opening the HTML file locally;
+> offline mode and PWA installation require hosting.
+
+### Recommended settings
+
+| Goal | Settings |
 |---|---|
-| Fluidité maximale | HD natif · Textures natif · Effets allégés · Timing rapide |
-| Meilleur rendu | HD ×2 · Textures ×2 · OpenGL · Effets complets |
-| Compromis | HD ×2 · Effets allégés · Frameskip 1 |
+| Maximum smoothness | HD native · Textures native · Lightweight effects · Fast timing |
+| Best rendering | HD ×2 · Textures ×2 · OpenGL · Full effects |
+| Balanced | HD ×2 · Lightweight effects · Frameskip 1 |
 
-**Attention** : le mode ×2 quadruple le nombre de pixels 3D calculés et fait chauffer
-l'appareil. C'est inhérent à l'upscaling, aucun réglage ne l'évite complètement.
+**Warning**: ×2 mode quadruples the number of 3D pixels computed and makes the device heat up.
+This is inherent to upscaling; no setting avoids it entirely.
 
 ---
 
-## Fichiers
+## Files
 
-| Fichier | Rôle |
+| File | Role |
 |---|---|
-| `lecteur-ds-hd.html` | l'application complète (moteur + core + interface) |
-| `index.html` | copie du précédent, pour servir à la racine |
-| `sw.js` | service worker (cache hors ligne) |
-| `manifest.json` | métadonnées PWA |
-| `apple-touch-icon.png` | icône iOS (**fichier obligatoire** : iOS ignore les data-URI) |
-| `icon-512.png` | icône PWA haute résolution |
+| `lecteur-ds-hd.html` | the full application (engine + core + interface) |
+| `index.html` | copy of the above, to serve at the root |
+| `sw.js` | service worker (offline cache) |
+| `manifest.json` | PWA metadata |
+| `apple-touch-icon.png` | iOS icon (**mandatory file**: iOS ignores data-URIs) |
+| `icon-512.png` | high-resolution PWA icon |
 
 ---
 
-## Licence
+## License
 
-GPL-3.0 — voir `LICENSE`. Le projet embarque EmulatorJS et le core DeSmuME, sous GPL.
-Aucune ROM ni BIOS n'est distribué.
+GPL-3.0 — see `LICENSE`. The project embeds EmulatorJS and the DeSmuME core, under GPL.
+No ROM or BIOS is distributed.
