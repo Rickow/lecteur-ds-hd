@@ -87,7 +87,8 @@ l'appareil. C'est inhérent à l'upscaling, aucun réglage ne l'évite complète
 
 ---
 
-## Licence
+## Licence & crédits
 
-GPL-3.0 — voir `LICENSE`. Le projet embarque EmulatorJS et le core DeSmuME, sous GPL.
-Aucune ROM ni BIOS n'est distribué.
+**GPL-3.0** (voir [`LICENSE`](LICENSE)). Liste des composants, liens GitHub et licences
+dans [**CREDITS.md**](CREDITS.md). Le projet embarque EmulatorJS (GPL-3.0) et le core
+DeSmuME (GPL-2.0). Aucune ROM ni BIOS n'est distribué.
