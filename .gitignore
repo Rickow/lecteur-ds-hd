@@ -1,0 +1,6 @@
+.DS_Store
+*.nds
+*.sav
+*.dsv
+*.state
+bios/

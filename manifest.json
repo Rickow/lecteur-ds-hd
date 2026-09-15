@@ -1,0 +1,15 @@
+{
+  "name": "Lecteur DS HD",
+  "short_name": "DS HD",
+  "description": "Émulateur Nintendo DS (DeSmuME) avec rendu haute résolution",
+  "start_url": "./lecteur-ds-hd.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#050506",
+  "theme_color": "#0b0b0e",
+  "icons": [
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

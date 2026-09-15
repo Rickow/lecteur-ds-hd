@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="34%" r="82%">
+      <stop offset="0%" stop-color="#17171d"/>
+      <stop offset="58%" stop-color="#0c0c10"/>
+      <stop offset="100%" stop-color="#050506"/>
+    </radialGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f2eee2"/>
+      <stop offset="100%" stop-color="#cfc9b8"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2a30"/>
+      <stop offset="100%" stop-color="#17171b"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e4c069"/>
+      <stop offset="100%" stop-color="#c9a24b"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- fond arrondi -->
+  <rect x="0" y="0" width="512" height="512" rx="114" fill="url(#bg)"/>
+  <rect x="6" y="6" width="500" height="500" rx="110" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="2"/>
+
+  <g filter="url(#soft)">
+    <!-- moitié haute -->
+    <rect x="128" y="96" width="256" height="150" rx="26" fill="url(#body)"/>
+    <rect x="160" y="120" width="192" height="104" rx="12" fill="url(#screen)"/>
+    <rect x="168" y="128" width="176" height="88" rx="8" fill="url(#glow)" opacity="0.9"/>
+    <rect x="168" y="128" width="176" height="44" rx="8" fill="#ffffff" opacity="0.12"/>
+
+    <!-- charnière -->
+    <rect x="140" y="246" width="232" height="26" rx="13" fill="#e0dccd"/>
+    <circle cx="150" cy="259" r="6" fill="#bdb7a6"/>
+    <circle cx="362" cy="259" r="6" fill="#bdb7a6"/>
+
+    <!-- moitié basse -->
+    <rect x="128" y="272" width="256" height="150" rx="26" fill="url(#body)"/>
+    <rect x="196" y="292" width="120" height="104" rx="12" fill="url(#screen)"/>
+    <rect x="204" y="300" width="104" height="88" rx="7" fill="#22222a"/>
+
+    <!-- croix directionnelle (gauche) -->
+    <g fill="#8f8a7a">
+      <rect x="150" y="330" width="42" height="15" rx="4"/>
+      <rect x="163.5" y="316.5" width="15" height="42" rx="4"/>
+    </g>
+
+    <!-- boutons (droite) -->
+    <g fill="#8f8a7a">
+      <circle cx="345" cy="322" r="8.5"/>
+      <circle cx="366" cy="338" r="8.5"/>
+      <circle cx="345" cy="354" r="8.5"/>
+      <circle cx="324" cy="338" r="8.5"/>
+    </g>
+    <!-- start/select -->
+    <rect x="332" y="376" width="26" height="7" rx="3.5" fill="#a8a293" transform="rotate(-32 345 379)"/>
+  </g>
+</svg>
